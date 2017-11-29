@@ -34,9 +34,6 @@ instance_groups:
             password: ((rabbitmq-broker-password))
         cookie:
         cluster_partition_handling: ((cluster-partition-handling-strategy))
-        ssl:
-          key: ((properties-rabbitmq-server-ssl.key))
-          cert: ((properties-rabbitmq-server-ssl.cert))
   vm_type: ((rabbitmq-server-vm_type))
   stemcell: trusty
   persistent_disk_type: ((rabbitmq-server-persistent_disk_type))
