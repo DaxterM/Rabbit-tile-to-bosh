@@ -1,0 +1,39 @@
+- type: replace
+  path: /releases/name=loggregator?
+  value:
+    name: loggregator
+    version: ((cf-loggregator-release-version))
+
+- type: replace
+  path: /releases/name=consul?
+  value:
+    name: consul
+    version: ((cf-consul-release-version))
+
+- type: replace
+  path: /instance_groups/name=rabbitmq-server/jobs/-
+  value: &metron_agent_config
+    name: metron_agent
+    release: loggregator
+    properties:
+      loggregator:
+        tls:
+          ca_cert: ((loggregator-ca-cert))
+          metron:
+            cert: ((loggregator-metron-cert))
+            key: ((loggregator-metron-key))
+- type: replace
+  path: /instance_groups/name=rabbitmq-server/jobs/-
+  value: &consul_config
+    name: consul_agent
+    release: consul
+    consumes:
+      consul_common:
+        from: consul_common_link
+        deployment: ((cf-deployment_name))
+      consul_client:
+        from: consul_client_link
+        deployment: ((cf-deployment_name))
+      consul_server: nil
+      consul: nil
+    provides: {}

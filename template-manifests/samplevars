@@ -1,0 +1,84 @@
+#Deployment
+deployment-name:
+broker-deployment-name:
+director-uuid:
+
+#Global
+stemcell-version:
+cf-deployment_name:
+#releases
+cf-rabbitmq-release-version:
+cf-routing-release-version:
+cf-rabbitmq-multitenant-broker-release-version:
+cf-loggregator-release-version:
+cf-consul-release-version:
+
+#RabbitMQ Server instance group
+rabbitmq-server-instances: 1
+rabbitmq-management-username:
+rabbitmq-management-password:
+rabbitmq-broker-username:
+rabbitmq-broker-password:
+rabbitmq-server-vm_type:
+rabbitmq-server-persistent_disk_type:
+rabbitmq-server-network-name:
+rabbitmq-server-azs:
+properties-rabbitmq-server-ssl.key:
+properties-rabbitmq-server-ssl.cert:
+cluster-partition-handling-strategy: autoheal
+properties-rabbitmq-server-plugins:
+ - rabbitmq_management
+ - rabbitmq_mqtt
+ - rabbitmq_stomp
+properties-rabbitmq-server-ports:
+ - 5672
+ - 5671
+ - 1883
+ - 8883
+ - 61613
+ - 61614
+ - 15672
+ - 15674
+
+
+
+
+#rabbitmq-haproxy instance group
+haproxy-instances: 1
+rabbitmq-management-hostname: pivotal-rabbitmq-broker
+bosh-domain:
+rabbitmq-proxy-network-name:
+rabbitmq-proxy-vm_type:
+rabbitmq-proxy-azs:
+
+
+#rabbitmq-broker instance group
+multitenant-rabbitmq-broker-username:
+multitenant-rabbitmq-broker-password: 
+product-name: p-rabbitmq
+rabbitmq-broker-uuid: 568725FD-AD46-44CA-9853-621416E983A4
+rabbitmq-broker-plan-uuid: 22F0B28C-B886-4123-B01B-95E54D3DE6DA
+rabbitmq-hosts:
+  - 0.0.0.0
+rabbitmq-management-hostname: pivotal-rabbitmq
+rabbitmq-broker-hostname: rabbitmq-multitenant-broker
+rabbitmq-broker-vm_type:
+rabbitmq-broker-network-name:
+rabbitmq-broker-azs:
+cf-admin-username:
+cf-admin-password:
+rabbitmq-broker-protocol: http
+broker-registrar-vm_type:
+broker-deregistrar-vm_type:
+smoke-tests-vm_type:
+#loggregator
+loggregator-ca-cert: |
+  -----BEGIN CERTIFICATE-----
+  -----END CERTIFICATE-----
+loggregator-metron-cert: |
+  -----BEGIN CERTIFICATE-----
+  -----END CERTIFICATE-----
+loggregator-metron-key: |
+  -----BEGIN RSA PRIVATE KEY-----
+
+  -----END RSA PRIVATE KEY-----
